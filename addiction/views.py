@@ -12,7 +12,7 @@ class UserCreate(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         if User.objects.filter(username=request.data['username'], email=request.data['email']).exists():
             return Response(UserSerializer(instance=User.objects.get(username = request.data['username'])).data)
-        if User.objects.filter(username=request.data['username']).exists():
+        if User.objects.filter(username=request.data['username']).exists() or User.objects.filter(username=request.data['email']).exists():
             return Response({'message': 'User with the username or email already exists'}, status=status.HTTP_406_NOT_ACCEPTABLE)
         return super().post(request, *args, **kwargs)
 
