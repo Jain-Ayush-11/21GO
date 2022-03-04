@@ -6,3 +6,7 @@ from .models import User
 class UserCreate(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = serializers.UserSerializer
+
+class HomeView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
