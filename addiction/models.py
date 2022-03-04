@@ -10,3 +10,10 @@ class User(models.Model):
 
     def __str__(self):
         return self.username
+
+class Wallpaper(models.Model):
+    image = models.URLField(max_length=700)
+    day = models.IntegerField()
+
+    def __str__(self) -> str:
+        return f'{self.day}'
