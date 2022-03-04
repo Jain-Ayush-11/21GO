@@ -1,6 +1,6 @@
 from rest_framework.response import Response
+from rest_framework import status
 from rest_framework import generics
-from . import serializers
 from .models import User, Wallpaper
 from .serializers import UserSerializer, WallpaperSerializer
 
@@ -10,13 +10,15 @@ class UserCreate(generics.CreateAPIView):
     serializer_class = UserSerializer
 
     def post(self, request, *args, **kwargs):
-        if User.objects.filter(username=request.data['username']).exists():
+        if User.objects.filter(username=request.data['username'], email=request.data['email']).exists():
             return Response(UserSerializer(instance=User.objects.get(username = request.data['username'])).data)
+        if User.objects.filter(username=request.data['username']).exists():
+            return Response({'message': 'User with the username or email already exists'}, status=status.HTTP_406_NOT_ACCEPTABLE)
         return super().post(request, *args, **kwargs)
 
 class HomeView(generics.RetrieveAPIView):
     queryset = User.objects.all()
-    serializer_class = serializers.UserSerializer
+    serializer_class = UserSerializer
 
 class WallpaperGet(generics.ListAPIView):
     serializer_class = WallpaperSerializer
