@@ -1,3 +1,4 @@
+from random import randint
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
@@ -26,7 +27,10 @@ class WallpaperGet(generics.ListAPIView):
     serializer_class = WallpaperSerializer
 
     def get_queryset(self):
-        return Wallpaper.objects.filter(day__lte = self.kwargs['pk'])
+        wallpaper = []
+        for i in range(self.kwargs['pk']+1):
+            wallpaper.append(Wallpaper.objects.filter(day=i)[randint(0, Wallpaper.objects.filter(day=i).count()-1)])
+        return wallpaper
 
 class ExitView(generics.UpdateAPIView):
     queryset = User.objects.all()
