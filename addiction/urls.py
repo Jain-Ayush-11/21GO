@@ -7,4 +7,5 @@ urlpatterns = [
     path('wallpapers/<int:pk>/', views.WallpaperGet.as_view()),
     path('exit/<int:pk>/', views.ExitView.as_view()),
     path('relapse-record/', views.RelapseRecord.as_view()),
+    path('relapse/<int:pk>/', views.CalenderStats.as_view()),
 ]

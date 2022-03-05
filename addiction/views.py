@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
-from .models import User, Wallpaper
+from .models import User, Wallpaper, Relapse
 from .serializers import UserSerializer, WallpaperSerializer, RelapseSerializer
 
 # Create your views here.
@@ -44,3 +44,9 @@ class RelapseRecord(generics.CreateAPIView):
         user.attempts += 1
         user.save()
         return super().post(request, *args, **kwargs)
+
+class CalenderStats(generics.ListAPIView):
+    serializer_class = RelapseSerializer
+
+    def get_queryset(self):
+        return Relapse.objects.filter(user = self.kwargs['pk'])
