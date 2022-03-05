@@ -1,6 +1,7 @@
-# 21GO
+# 21GO - A Wallpaper Based Addiction Tracking App
 To help with the issue of tracking days going without the addictive habit, an app called "21GO" allowing people to track these habits.
 # About the app
+> Works with the primary principle of changing a habit and introducing new ones if followed for 21 Days.
 > A Timer Representing the time spent without that certain habit is available on the home screen with different streak based wallpapers which are updated as the streak progresses and reset if the streak is reset.
 > The app has a relapse button to record a relapse and restart the journey.
 > Along with wallpapers, the user can also:
