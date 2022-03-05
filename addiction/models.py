@@ -38,6 +38,11 @@ class Post(models.Model):
     def __str__(self) -> str:
         return f'{self.user}-->{self.title}-->{self.message}'
 
+class Journal(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    entry = models.TextField()
+    time_created = models.DateTimeField(auto_now=True)
+
 class Achievements(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     day = models.IntegerField(default=0)
