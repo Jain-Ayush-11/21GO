@@ -1,4 +1,4 @@
-from .models import Achievements, Journal, Post, User, Wallpaper, Relapse
+from .models import Journal, Post, User, Wallpaper, Relapse
 from rest_framework.serializers import ModelSerializer
 
 class UserSerializer(ModelSerializer):

@@ -11,5 +11,4 @@ urlpatterns = [
     path('post/', views.PostView.as_view()),
     path('journal/<int:pk>/', views.JournalView.as_view()),
     path('journal-entry/<int:pk>/', views.JournalDetailView.as_view()),
-    path('achievements/<int:pk>/', views.AchievementView.as_view()),
 ]
