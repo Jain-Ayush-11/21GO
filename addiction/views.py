@@ -32,10 +32,6 @@ class WallpaperGet(generics.ListAPIView):
             wallpaper.append(Wallpaper.objects.filter(day=i)[randint(0, Wallpaper.objects.filter(day=i).count()-1)])
         return wallpaper
 
-class ExitView(generics.UpdateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
 class RelapseRecord(generics.CreateAPIView):
     serializer_class = RelapseSerializer
 
