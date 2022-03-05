@@ -27,4 +27,4 @@ class Relapse(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return f'{self.date}-->{self.reason}'
+        return f'{self.user}-->{self.date}-->{self.reason}'

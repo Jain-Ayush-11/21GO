@@ -10,3 +10,4 @@ class UserAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Wallpaper, WallpaperAdmin)
+admin.site.register(models.Relapse)
