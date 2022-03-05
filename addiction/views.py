@@ -27,3 +27,7 @@ class WallpaperGet(generics.ListAPIView):
 
     def get_queryset(self):
         return Wallpaper.objects.filter(day__lte = self.kwargs['pk'])
+
+class ExitView(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

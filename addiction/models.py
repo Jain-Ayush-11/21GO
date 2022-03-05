@@ -6,6 +6,8 @@ class User(models.Model):
     email = models.EmailField(unique=True)
     best = models.IntegerField(default=0)
     attempts = models.IntegerField(default=1)
+    time_left = models.BigIntegerField(default=(21*24*60*60*1000))
+    end_time = models.BigIntegerField(default=0)
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
