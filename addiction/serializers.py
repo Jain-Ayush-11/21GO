@@ -30,6 +30,11 @@ class PostSerializer(ModelSerializer):
         model = Post
         fields = '__all__'
 
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response['user']=instance.user.username
+        return response
+
 class JournalSerializer(ModelSerializer):
     class Meta:
         model = Journal
