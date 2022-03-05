@@ -48,8 +48,3 @@ class JournalSerializer(ModelSerializer):
         response['year'] = date[0]+date[1]+date[2]+date[3]
         response.pop('user')
         return response
-
-class AchievementSerializer(ModelSerializer):
-    class Meta:
-        model = Achievements
-        fields = '__all__'

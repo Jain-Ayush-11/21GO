@@ -45,12 +45,3 @@ class Journal(models.Model):
 
     def __str__(self) -> str:
         return self.entry
-
-class Achievements(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    day = models.IntegerField(default=0)
-    attempts = models.IntegerField(default=0)
-    time_created = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self) -> str:
-        return f'{self.user}-->{self.day}-->{self.attempts}'
