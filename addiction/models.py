@@ -43,6 +43,9 @@ class Journal(models.Model):
     entry = models.TextField()
     time_created = models.DateTimeField(auto_now=True)
 
+    def __str__(self) -> str:
+        return self.entry
+
 class Achievements(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     day = models.IntegerField(default=0)
