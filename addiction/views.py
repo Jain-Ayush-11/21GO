@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
 from .models import User, Wallpaper
-from .serializers import UserSerializer, WallpaperSerializer
+from .serializers import UserSerializer, WallpaperSerializer, RelapseSerializer
 
 # Create your views here.
 class UserCreate(generics.CreateAPIView):
@@ -31,3 +31,16 @@ class WallpaperGet(generics.ListAPIView):
 class ExitView(generics.UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+class RelapseRecord(generics.CreateAPIView):
+    serializer_class = RelapseSerializer
+
+    def post(self, request, *args, **kwargs):
+        user = User.objects.get(id=request.data['user'])
+        print((int)(request.data['best']))
+        if (int)(request.data['best']) is not None:
+            if (int)(request.data['best'])>user.best:
+                user.best=request.data['best']
+        user.attempts += 1
+        user.save()
+        return super().post(request, *args, **kwargs)

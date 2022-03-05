@@ -19,3 +19,12 @@ class Wallpaper(models.Model):
 
     def __str__(self) -> str:
         return f'{self.day}'
+
+class Relapse(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    reason = models.CharField(max_length=100)
+    time_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f'{self.date}-->{self.reason}'
