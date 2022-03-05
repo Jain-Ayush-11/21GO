@@ -1,3 +1,4 @@
+from datetime import date, timedelta
 from django.db import models
 
 # Create your models here.
@@ -22,7 +23,7 @@ class Wallpaper(models.Model):
 
 class Relapse(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField(default=date.today())
     reason = models.CharField(max_length=100)
     time_created = models.DateTimeField(auto_now_add=True)
 
