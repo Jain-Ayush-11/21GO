@@ -2,8 +2,8 @@ from random import randint
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
-from .models import User, Wallpaper, Relapse
-from .serializers import UserSerializer, WallpaperSerializer, RelapseSerializer
+from .models import Post, User, Wallpaper, Relapse
+from .serializers import PostSerializer, UserSerializer, WallpaperSerializer, RelapseSerializer
 
 # Create your views here.
 class UserCreate(generics.CreateAPIView):
@@ -54,3 +54,7 @@ class CalenderStats(generics.ListAPIView):
 
     def get_queryset(self):
         return Relapse.objects.filter(user = self.kwargs['pk'])
+
+class PostView(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer

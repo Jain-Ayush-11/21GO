@@ -1,4 +1,4 @@
-from .models import User, Wallpaper, Relapse
+from .models import Post, User, Wallpaper, Relapse
 from rest_framework.serializers import ModelSerializer
 
 class UserSerializer(ModelSerializer):
@@ -24,3 +24,9 @@ class RelapseSerializer(ModelSerializer):
         response['year'] = date[0]+date[1]+date[2]+date[3]
         response.pop('user')
         return response
+
+class PostSerializer(ModelSerializer):
+    class Meta:
+        model = Post
+        fields = '__all__'
+        
