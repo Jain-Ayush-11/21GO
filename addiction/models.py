@@ -31,8 +31,18 @@ class Relapse(models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, default="Let's Go")
     message = models.TextField()
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return f'{self.user}-->{self.message}'
+        return f'{self.user}-->{self.title}-->{self.message}'
+
+class Achievements(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    day = models.IntegerField(default=0)
+    attempts = models.IntegerField(default=0)
+    time_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f'{self.user}-->{self.day}-->{self.attempts}'

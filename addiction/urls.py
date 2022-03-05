@@ -9,4 +9,5 @@ urlpatterns = [
     path('relapse-record/', views.RelapseRecord.as_view()),
     path('relapse/<int:pk>/', views.CalenderStats.as_view()),
     path('post/', views.PostView.as_view()),
+    path('achievements/<int:pk>/', views.AchievementView.as_view()),
 ]

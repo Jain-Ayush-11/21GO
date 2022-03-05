@@ -2,8 +2,8 @@ from random import randint
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
-from .models import Post, User, Wallpaper, Relapse
-from .serializers import PostSerializer, UserSerializer, WallpaperSerializer, RelapseSerializer
+from .models import Achievements, Post, User, Wallpaper, Relapse
+from .serializers import AchievementSerializer, PostSerializer, UserSerializer, WallpaperSerializer, RelapseSerializer
 
 # Create your views here.
 class UserCreate(generics.CreateAPIView):
@@ -41,12 +41,18 @@ class RelapseRecord(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         user = User.objects.get(id=request.data['user'])
-        print((int)(request.data['best']))
-        if (int)(request.data['best']) is not None:
-            if (int)(request.data['best'])>user.best:
-                user.best=request.data['best']
+        best = (int)(request.data['best'])
+        print(best)
+        if best is not None:
+            if best>user.best:
+                user.best=best
         user.attempts += 1
         user.save()
+        ach = [1, 2, 4, 7, 14, 21]
+        for a in ach:
+            if (best >= a):
+                if not Achievements.objects.filter(user = user, day=a).exists():
+                    Achievements.objects.create(user = user, day=a)
         return super().post(request, *args, **kwargs)
 
 class CalenderStats(generics.ListAPIView):
@@ -58,3 +64,9 @@ class CalenderStats(generics.ListAPIView):
 class PostView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+class AchievementView(generics.ListAPIView):
+    serializer_class = AchievementSerializer
+
+    def get_queryset(self):
+        return Achievements.objects.filter(user = self.kwargs['pk'])

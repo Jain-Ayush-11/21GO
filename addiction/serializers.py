@@ -1,4 +1,4 @@
-from .models import Post, User, Wallpaper, Relapse
+from .models import Achievements, Post, User, Wallpaper, Relapse
 from rest_framework.serializers import ModelSerializer
 
 class UserSerializer(ModelSerializer):
@@ -29,4 +29,8 @@ class PostSerializer(ModelSerializer):
     class Meta:
         model = Post
         fields = '__all__'
-        
+
+class AchievementSerializer(ModelSerializer):
+    class Meta:
+        model = Achievements
+        fields = '__all__'

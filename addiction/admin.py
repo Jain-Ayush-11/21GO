@@ -11,3 +11,5 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Wallpaper, WallpaperAdmin)
 admin.site.register(models.Relapse)
+admin.site.register(models.Achievements)
+admin.site.register(models.Post)
